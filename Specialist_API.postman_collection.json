@@ -1,0 +1,478 @@
+{
+  "info": {
+    "name": "Specialist API Collection",
+    "description": "Complete API collection for testing Specialist endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Specialist (JSON)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Company Formation Service\",\n  \"description\": \"Complete company formation with legal documentation and registration assistance. We handle all paperwork, state filings, and provide ongoing support for your new business entity.\",\n  \"base_price\": 2500,\n  \"duration_days\": 14,\n  \"service_category\": \"Company Formation\",\n  \"supported_company_types\": [\n    {\n      \"name\": \"LLC\",\n      \"description\": \"Limited Liability Company formation with full legal support and operating agreement\"\n    },\n    {\n      \"name\": \"Corporation\",\n      \"description\": \"C-Corp or S-Corp formation services with bylaws and stock certificates\"\n    }\n  ],\n  \"additional_offerings\": [\n    {\n      \"name\": \"Legal Consultation\",\n      \"description\": \"1-hour consultation with business attorney to discuss entity structure\"\n    },\n    {\n      \"name\": \"Document Review\",\n      \"description\": \"Comprehensive review of all formation documents before filing\"\n    },\n    {\n      \"name\": \"EIN Application\",\n      \"description\": \"Federal Tax ID number application with IRS\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Create Specialist with Files (Form-Data)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "data",
+              "value": "{\"title\":\"Tax Consulting Service\",\"description\":\"Professional tax consulting and preparation for small to medium businesses. Maximize deductions and ensure compliance.\",\"base_price\":1500,\"duration_days\":7,\"service_category\":\"Tax Consulting\",\"supported_company_types\":[{\"name\":\"LLC\",\"description\":\"LLC tax services and optimization\"},{\"name\":\"S-Corp\",\"description\":\"S-Corporation tax filing and planning\"}],\"additional_offerings\":[{\"name\":\"Tax Planning\",\"description\":\"Annual tax planning session to minimize liability\"},{\"name\":\"Audit Support\",\"description\":\"Support during IRS audits or inquiries\"}]}",
+              "type": "text"
+            },
+            {
+              "key": "media",
+              "type": "file",
+              "src": [],
+              "description": "Upload 1-3 image/video/document files (JPEG, PNG, GIF, WEBP, MP4, PDF)"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Get All Specialists (Basic)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists?page=1&limit=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Get Published Specialists Only",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists?is_draft=false&page=1&limit=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"],
+          "query": [
+            {
+              "key": "is_draft",
+              "value": "false"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Search Specialists by Keyword",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists?searchTerm=company&is_draft=false",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"],
+          "query": [
+            {
+              "key": "searchTerm",
+              "value": "company"
+            },
+            {
+              "key": "is_draft",
+              "value": "false"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Filter by Price Range",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists?minPrice=1000&maxPrice=5000&is_draft=false",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"],
+          "query": [
+            {
+              "key": "minPrice",
+              "value": "1000"
+            },
+            {
+              "key": "maxPrice",
+              "value": "5000"
+            },
+            {
+              "key": "is_draft",
+              "value": "false"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Filter by Service Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists?service_category=Tax Consulting&is_draft=false",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"],
+          "query": [
+            {
+              "key": "service_category",
+              "value": "Tax Consulting"
+            },
+            {
+              "key": "is_draft",
+              "value": "false"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Get Single Specialist by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "REPLACE_WITH_ACTUAL_ID",
+              "description": "UUID of the specialist"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. Get Draft Specialists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists/drafts?page=1&limit=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists", "drafts"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. Get Published Specialists (Dedicated Endpoint)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists/published?page=1&limit=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists", "published"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "11. Update Specialist (JSON)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated Company Formation Service - Premium\",\n  \"base_price\": 3500,\n  \"description\": \"Enhanced company formation package with expedited processing and premium legal support.\",\n  \"duration_days\": 10\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "REPLACE_WITH_ACTUAL_ID",
+              "description": "UUID of the specialist to update"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "12. Update Specialist with New Files (Form-Data)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "data",
+              "value": "{\"title\":\"Updated Tax Consulting - Advanced\",\"base_price\":2000}",
+              "type": "text"
+            },
+            {
+              "key": "media",
+              "type": "file",
+              "src": [],
+              "description": "Upload new files (will add to existing media)"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "REPLACE_WITH_ACTUAL_ID",
+              "description": "UUID of the specialist to update"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "13. Publish Specialist (Draft → Published)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists/:id/publish",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists", ":id", "publish"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "REPLACE_WITH_ACTUAL_ID",
+              "description": "UUID of the draft specialist to publish"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "14. Delete Specialist (Soft Delete)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "REPLACE_WITH_ACTUAL_ID",
+              "description": "UUID of the specialist to delete"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test: Bronze Tier (5% Fee)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Basic Consulting - Bronze Tier\",\n  \"description\": \"Entry-level consulting service\",\n  \"base_price\": 500,\n  \"duration_days\": 3,\n  \"service_category\": \"Consulting\",\n  \"supported_company_types\": [{\"name\": \"LLC\", \"description\": \"LLC services\"}],\n  \"additional_offerings\": [{\"name\": \"Basic Support\", \"description\": \"Email support\"}]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test: Silver Tier (7.5% Fee)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Standard Consulting - Silver Tier\",\n  \"description\": \"Mid-level consulting service\",\n  \"base_price\": 2500,\n  \"duration_days\": 7,\n  \"service_category\": \"Consulting\",\n  \"supported_company_types\": [{\"name\": \"LLC\", \"description\": \"LLC services\"}],\n  \"additional_offerings\": [{\"name\": \"Phone Support\", \"description\": \"24/7 phone support\"}]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test: Gold Tier (10% Fee)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Premium Consulting - Gold Tier\",\n  \"description\": \"High-level consulting service\",\n  \"base_price\": 7000,\n  \"duration_days\": 14,\n  \"service_category\": \"Consulting\",\n  \"supported_company_types\": [{\"name\": \"Corporation\", \"description\": \"Corp services\"}],\n  \"additional_offerings\": [{\"name\": \"Premium Support\", \"description\": \"Dedicated account manager\"}]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test: Platinum Tier (12.5% Fee)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Elite Consulting - Platinum Tier\",\n  \"description\": \"Top-tier consulting service\",\n  \"base_price\": 15000,\n  \"duration_days\": 30,\n  \"service_category\": \"Consulting\",\n  \"supported_company_types\": [{\"name\": \"Corporation\", \"description\": \"Enterprise services\"}],\n  \"additional_offerings\": [{\"name\": \"VIP Support\", \"description\": \"Executive level support\"}]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/specialists",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "v1", "specialists"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -40,7 +40,14 @@ const refreshToken = JwtHelper.genererateToken({
 config.jwt.refresh_token_secret as Secret,
 config.jwt.refresh_token_expires_in as string
 )
-return { accessToken, refreshToken, needPasswordChange: userData.needsPasswordReset };
+return { 
+    accessToken, 
+    refreshToken, 
+    needPasswordChange: userData.needsPasswordReset,
+    name: userData.name || userData.email.split('@')[0], // Use email prefix if name is null
+    email: userData.email,
+    role: userData.role
+};
 };
 
 const refreshToken = async(token: string) => {

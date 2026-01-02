@@ -39,7 +39,10 @@ const loginUser = catchAsync(async (req:Request, res:Response) => {
         message: 'User logged in successfully',
         data: {
             accessToken: result.accessToken,
-            needPasswordChange: result.needPasswordChange
+            needPasswordChange: result.needPasswordChange,
+            name: result.name,
+            email: result.email,
+            role: result.role
         },
        });
 });

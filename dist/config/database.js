@@ -22,10 +22,10 @@ exports.AppDataSource = new typeorm_1.DataSource({
 const initializeDatabase = async () => {
     try {
         await exports.AppDataSource.initialize();
-        console.log('✅ Database connection established successfully');
+        console.log(' Database connection established successfully');
     }
     catch (error) {
-        console.error('❌ Error during Data Source initialization:', error);
+        console.error(' Error during Data Source initialization:', error);
         throw error;
     }
 };

@@ -2,14 +2,19 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { User } from '../entities/User.entity';
 import { Admin } from '../entities/Admin.entity';
+import { Provider } from '../entities/Provider.entity';
+import { Specialist } from '../entities/Specialist.entity';
+import { ServiceOffering } from '../entities/ServiceOffering.entity';
+import { PlatformFee } from '../entities/PlatformFee.entity';
+import { Media } from '../entities/Media.entity';
 import config from './index';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
   url: config.database_url,
-  synchronize: false, // Set to false in production, use migrations instead
+  synchronize: true, // Auto-sync enabled - ⚠️ Use only in development
   logging: false,
-  entities: [User, Admin],
+  entities: [User, Admin, Provider, Specialist, ServiceOffering, PlatformFee, Media],
   migrations: ['src/migrations/**/*.ts'],
   subscribers: [],
 });

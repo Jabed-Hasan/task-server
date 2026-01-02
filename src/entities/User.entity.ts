@@ -3,7 +3,9 @@ import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneT
 export enum UserRole {
   SUPER_ADMIN = 'SUPER_ADMIN',
   ADMIN = 'ADMIN',
+  PROVIDER = 'PROVIDER',
   SPECIALIST = 'SPECIALIST',
+  USER = 'USER',
 }
 
 export enum UserStatus {
@@ -23,6 +25,12 @@ export class User {
 
   @Column()
   password!: string;
+
+  @Column({ nullable: true })
+  name?: string;
+
+  @Column({ nullable: true })
+  phoneNumber?: string;
 
   @Column({
     type: 'enum',

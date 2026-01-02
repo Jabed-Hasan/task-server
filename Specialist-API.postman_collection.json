@@ -1,0 +1,286 @@
+{
+  "info": {
+    "name": "Specialist API",
+    "description": "Complete API collection for Specialist management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Specialist",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Monthly Company Secretarial Services\",\n  \"description\": \"Comprehensive monthly company secretarial services including compliance and filing\",\n  \"base_price\": 800,\n  \"duration_days\": 14,\n  \"is_draft\": true,\n  \"service_offerings\": [\n    {\n      \"tier_name\": \"Basic Package\",\n      \"min_value\": 0,\n      \"max_value\": 1000,\n      \"platform_fee_percentage\": 5\n    },\n    {\n      \"tier_name\": \"Premium Package\",\n      \"min_value\": 1001,\n      \"max_value\": 5000,\n      \"platform_fee_percentage\": 7.5\n    }\n  ],\n  \"media\": [\n    {\n      \"file_name\": \"service-image-1.jpg\",\n      \"file_size\": 150000,\n      \"mime_type\": \"image/jpeg\",\n      \"media_type\": \"image\",\n      \"display_order\": 1\n    },\n    {\n      \"file_name\": \"service-image-2.jpg\",\n      \"file_size\": 180000,\n      \"mime_type\": \"image/jpeg\",\n      \"media_type\": \"image\",\n      \"display_order\": 2\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/specialists",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists"]
+        }
+      }
+    },
+    {
+      "name": "Get All Specialists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/specialists?page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "searchTerm",
+              "value": "",
+              "disabled": true
+            },
+            {
+              "key": "is_draft",
+              "value": "",
+              "disabled": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Draft Specialists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/specialists/drafts?page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists", "drafts"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Published Specialists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/specialists/published?page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists", "published"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Specialist by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/specialists/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "YOUR_SPECIALIST_ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Specialist",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated Company Secretarial Services\",\n  \"description\": \"Updated comprehensive service package\",\n  \"base_price\": 900,\n  \"duration_days\": 21\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/specialists/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "YOUR_SPECIALIST_ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Publish Specialist",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"is_draft\": false\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/specialists/:id/publish",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists", ":id", "publish"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "YOUR_SPECIALIST_ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Unpublish Specialist",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"is_draft\": true\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/specialists/:id/publish",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists", ":id", "publish"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "YOUR_SPECIALIST_ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Specialist",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/specialists/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "YOUR_SPECIALIST_ID"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search Specialists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/specialists?searchTerm=secretarial&page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists"],
+          "query": [
+            {
+              "key": "searchTerm",
+              "value": "secretarial"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Filter by Price Range",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/specialists?min_price=500&max_price=1000&page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["specialists"],
+          "query": [
+            {
+              "key": "min_price",
+              "value": "500"
+            },
+            {
+              "key": "max_price",
+              "value": "1000"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    }
+  ]
+}
