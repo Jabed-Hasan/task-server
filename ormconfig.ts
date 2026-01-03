@@ -13,7 +13,7 @@ dotenv.config();
 export const AppDataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  synchronize: process.env.NODE_ENV !== 'production', // Disable in production
+  synchronize: true, // Keep enabled for now (disable after stable)
   dropSchema: process.env.NODE_ENV === 'development', // Drop and recreate in development
   logging: process.env.NODE_ENV !== 'production',
   entities: process.env.NODE_ENV === 'production' 
