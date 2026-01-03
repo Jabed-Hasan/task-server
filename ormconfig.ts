@@ -13,9 +13,15 @@ dotenv.config();
 export const AppDataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  synchronize: true, // Auto-sync enabled - ⚠️ Use only in development
-  logging: true,
-  entities: [User, Admin, Provider, Specialist, ServiceOffering, PlatformFee, Media],
-  migrations: ['src/migrations/**/*.ts'],
+  synchronize: process.env.NODE_ENV !== 'production', // Disable in production
+  dropSchema: process.env.NODE_ENV === 'development', // Drop and recreate in development
+  logging: process.env.NODE_ENV !== 'production',
+  entities: process.env.NODE_ENV === 'production' 
+    ? [User, Admin, Provider, Specialist, ServiceOffering, PlatformFee, Media]
+    : [User, Admin, Provider, Specialist, ServiceOffering, PlatformFee, Media],
+  migrations: process.env.NODE_ENV === 'production' 
+    ? ['dist/src/migrations/**/*.js']
+    : ['src/migrations/**/*.ts'],
   subscribers: [],
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
