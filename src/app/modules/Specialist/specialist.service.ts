@@ -44,7 +44,8 @@ const calculatePlatformFee = async (basePrice: number): Promise<number> => {
 
 // Create Specialist
 const createSpecialist = async (
-  payload: ICreateSpecialistInput
+  payload: ICreateSpecialistInput,
+  createdBy?: { id: string; name: string }
 ): Promise<Specialist> => {
   const { media, ...specialistData } = payload;
 
@@ -60,6 +61,8 @@ const createSpecialist = async (
     slug,
     platform_fee: platformFee,
     final_price: finalPrice,
+    created_by_id: createdBy?.id,
+    created_by_name: createdBy?.name,
     supported_company_types: specialistData.supported_company_types as any,
     additional_offerings: specialistData.additional_offerings as any,
     service_offerings_data: specialistData.service_offerings_data as any,

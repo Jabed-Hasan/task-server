@@ -66,10 +66,38 @@ const createUser = async (req: Request, res: Response) => {
   }
 };
 
+const changeUserStatus = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    
+    if (!status) {
+      return res.status(400).json({
+        success: false,
+        message: "Status is required",
+      });
+    }
+    
+    const result = await userService.changeUserStatus(id, status);
+    res.status(200).json({
+      success: true,
+      message: `User status changed to ${status} successfully`,
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err?.message || "Failed to change user status",
+      error: err?.message,
+    });
+  }
+};
+
 export const UserController = {
     CreateAdmin,
     getUSerfromDB,
-    createUser
+    createUser,
+    changeUserStatus
 }
 
     

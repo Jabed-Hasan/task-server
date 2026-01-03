@@ -74,8 +74,37 @@ const createUser = async (data: any) => {
     return userWithoutPassword;
 };
 
+// Change user account status (ACTIVE/BLOCKED)
+const changeUserStatus = async (userId: string, status: string) => {
+    const userRepository = AppDataSource.getRepository(User);
+    
+    const user = await userRepository.findOne({
+        where: { id: userId }
+    });
+    
+    if (!user) {
+        throw new Error('User not found');
+    }
+    
+    // Validate status
+    const validStatuses = ['ACTIVE', 'BLOCKED', 'DELETED'];
+    if (!validStatuses.includes(status)) {
+        throw new Error('Invalid status. Must be ACTIVE, BLOCKED, or DELETED');
+    }
+    
+    user.status = status as any;
+    user.updatedAt = new Date();
+    
+    const result = await userRepository.save(user);
+    
+    // Remove password from response
+    const { password, ...userWithoutPassword } = result;
+    return userWithoutPassword;
+};
+
 export const userService = {
   CreateAdmin,
   getUserfromDB,
   createUser,
+  changeUserStatus,
 };

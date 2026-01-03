@@ -30,6 +30,12 @@ export class Specialist {
   @Column({ type: 'uuid', nullable: true })
   provider_id?: string;
 
+  @Column({ type: 'uuid', nullable: true })
+  created_by_id?: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  created_by_name?: string;
+
   @Column({ type: 'decimal', precision: 3, scale: 2, default: 0 })
   average_rating!: number;
 

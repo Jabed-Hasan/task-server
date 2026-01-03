@@ -13,4 +13,7 @@ router.post('/create-admin', authenticateUser('ADMIN', 'SUPER_ADMIN'), UserContr
 router.post('/', UserController.createUser);
 router.get('/all',UserController.getUSerfromDB);
 
+// Change user status (ACTIVE/BLOCKED)
+router.patch('/:id/status', authenticateUser('ADMIN', 'SUPER_ADMIN'), UserController.changeUserStatus);
+
 export const UserRouter = router;

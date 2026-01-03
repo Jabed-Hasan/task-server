@@ -131,7 +131,11 @@ const createSpecialistWithUpload = catchAsync(async (req: Request, res: Response
   }
 
   // Create specialist
-  const result = await SpecialistService.createSpecialist(specialistData);
+  const user = (req as any).user;
+  const result = await SpecialistService.createSpecialist(specialistData, {
+    id: user?.id,
+    name: user?.name
+  });
 
   sendResponse(res, {
     statusCode: StatusCodes.CREATED,
