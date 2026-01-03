@@ -10,7 +10,7 @@
     "strictPropertyInitialization": false,
 
     // Folder settings
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
 
     // Extras
@@ -21,7 +21,9 @@
   },
 
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "api/**/*",
+    "ormconfig.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

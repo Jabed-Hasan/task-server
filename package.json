@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "vercel-build": "echo 'Building for Vercel' && tsc",
+    "vercel-build": "tsc",
     "prettier": "format .",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ormconfig.ts",
